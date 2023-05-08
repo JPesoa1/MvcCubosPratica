@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcCubosPratica.Models.Cubos>
+
+@{
+    ViewData["Title"] = "GetCubos";
+      var imagenes = ViewData["IMAGENES"] as List<BlobModel>;
+}
+
+<h1>GetCubos</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCubo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>Comprar</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCubo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                    @for(int i=0;i<imagenes.Count(); i++)
+                    {
+                        @if (imagenes[i].Nombre == @item.Imagen)
+                        {
+                            <img style="width:250px;height:250px" src="@imagenes[i].Url"/>;
+                        }
+                        
+                    }
+
+                   
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                <a asp-controller="Cubos" asp-action="Compra"  asp-route-idcubo="@item.IdCubo">Comprar</a>
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

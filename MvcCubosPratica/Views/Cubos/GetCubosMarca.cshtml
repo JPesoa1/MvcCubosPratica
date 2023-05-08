@@ -1,0 +1,34 @@
+﻿@model List<Cubos>
+
+<form method="post">
+    <label>Marca</label>
+    <input type="text" name="marca"/>
+    <button>
+        Buscar
+    </button>
+</form>
+
+@if(Model != null){
+    <table>
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>MARCA</th>
+                <th>PRECIO</th>
+                <th>IMAGEN</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Cubos cubos in Model)
+            {   
+                <tr>
+                    <td>@cubos.Nombre</td>
+                    <td>@cubos.Marca</td>
+                    <td>@cubos.Precio</td>
+                    <td>@cubos.Imagen</td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+}
